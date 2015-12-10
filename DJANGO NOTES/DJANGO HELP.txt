@@ -1,0 +1,125 @@
+https://docs.djangoproject.com/en/1.9/
+http://tutorial.djangogirls.org/en/django_start_project/index.html
+Django Introduction
+Django Components :
+Models
+Templates
+Views
+
+creating a project
+C:\Python27\Scripts\django-admin.py startproject mysite .
+
+verify your Django project works:
+C:\Python27\python manage.py runserver
+wait till you get the message as :
+Performing system checks...
+
+System check identified no issues (0 silenced).
+Django version 1.9, using settings 'mysite.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+Changing the port :python manage.py runserver 8080
+Changing the IP : python manage.py runserver 0.0.0.0:8000
+
+In settings.py modify,
+TIME_ZONE ='Asia/Kolkatta'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+setup a DB :
+C:\Python27\python manage.py migrate
+
+Runserver
+C:\Python27\python manage.py runserver
+
+Check the WEB page is accessible : http://127.0.0.1:8000/
+
+creating an application:
+C:\Python27\python manage.py startapp blog
+
+modify settings.py in mysite to add, blog in INSTALLED_APPS
+
+modify models.py file in blog folder
+
+create tables for ur models in DB 
+C:\Python27\python manage.py makemigrations blog
+Output should be :
+Migrations for 'blog':
+  0001_initial.py:
+  - Create model Post
+  
+Django prepared for us a migration file that we have to apply now to our database.
+For this run :
+C:\Python27\python manage.py migrate blog
+Output should be :
+Operations to perform:
+  Apply all migrations: blog
+Running migrations:
+  Rendering model states... DONE
+  Applying blog.0001_initial... OK
+  
+Modify admin.py in blog folder
+Runserver
+C:\Python27\python manage.py runserver
+
+Check the WEB page is accessible : http://127.0.0.1:8000/admin to get the login page
+
+Create super user
+C:\Python27\python manage.py createsuperuser
+Username: admin
+Email address: admin@admin.com
+Password:
+Password (again):
+Superuser created successfully.
+
+Runserver
+C:\Python27\python manage.py runserver
+Check the WEB page is accessible : http://127.0.0.1:8000/admin
+Login with credentials and create 1 or 2 posts.
+
+Deploying urls 
+Install GIT
+You can download Git from git-scm.com. You can hit "next next next" on all steps except 
+for one; in the 5th step entitled "Adjusting your PATH environment", 
+choose "Run Git and associated Unix tools from the Windows command-line" 
+(the bottom option). Other than that, the defaults are fine. 
+Checkout Windows-style, commit Unix-style line endings is good
+
+Run : git init  from folder :C:\Users\Dell Pc\Desktop\DJANGO in cmd
+output should be :
+Initialized empty Git repository in ~/djangogirls/.git/
+Create users name :$ git config --global user.name "Your Name"
+add email id : $ git config --global user.email you@example.com
+
+add a new file as .gitignore in the folder :C:\Users\Dell Pc\Desktop\DJANGO
+contents should be : 
+*.pyc
+__pycache__
+myvenv
+db.sqlite3
+/static
+.DS_Store
+
+run command git status to check the status..
+output should be :
+On branch master
+
+Initial commit
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        .gitignore
+        blog/
+        manage.py
+        mysite/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+
+  
+
+Creating the Polls app : python manage.py startapp polls
+Write your first view, in polls folder
+1) Modify views.py
+2) urls.py
